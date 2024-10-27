@@ -38,3 +38,4 @@ services:
       MYSQL_ROOT_PASSWORD: root
 networks:
   url-shortener-network:
+    driver: bridge

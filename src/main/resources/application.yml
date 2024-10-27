@@ -2,11 +2,21 @@ spring:
   application:
     name: url-shortener
   datasource:
+    url: jdbc:mysql://localhost:3306/url_shortener
+    username: root
+    password: root
     initialization-mode: always
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
   sql:
     init:
       mode: always
+
+code:
+  length: ${CODE_LENGTH:5}
