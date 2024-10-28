@@ -12,12 +12,17 @@ import java.util.stream.Collectors;
 @Component
 public class RandomCodeGenerator {
 
+    private RandomCodeGenerator() {}
+
+    private static int codeLength;
+
     @Value("${code.length}")
-    private int codeLength;
+    public void setCodeLength(int codeLength) {
+        RandomCodeGenerator.codeLength = codeLength;
+    }
+    private final static String LETTERS = "abcdefghijklmnprstuvyzqw123456789";
 
-    private final String LETTERS = "abcdefghijklmnprstuvyzqw123456789";
-
-    public String generate() {
+    public static String generate() {
         SecureRandom random = new SecureRandom();
 
         StringBuilder generated = new StringBuilder();

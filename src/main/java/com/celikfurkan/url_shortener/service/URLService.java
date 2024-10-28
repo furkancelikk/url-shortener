@@ -16,14 +16,11 @@ import java.util.Optional;
 @Service
 public class URLService {
 
-    private final RandomCodeGenerator codeGenerator;
-
     private final URLRepository urlRepository;
 
     private final UrlCodeRepository codeRepository;
 
-    public URLService(RandomCodeGenerator codeGenerator, URLRepository urlRepository, UrlCodeRepository codeRepository) {
-        this.codeGenerator = codeGenerator;
+    public URLService(URLRepository urlRepository, UrlCodeRepository codeRepository) {
         this.urlRepository = urlRepository;
         this.codeRepository = codeRepository;
     }
@@ -46,7 +43,7 @@ public class URLService {
         }
         else {
             do {
-                requestCode = codeGenerator.generate();
+                requestCode = RandomCodeGenerator.generate();
             } while (isExistsByCode(requestCode));
         }
         Optional<URL> url = urlRepository.findByUrl(requestUrl);
