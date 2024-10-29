@@ -9,26 +9,33 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * Abstract base class for all entities in the application.
+ *
+ * <p>This class provides common fields such as ID, creation time,
+ * and last updated time for all entity classes that extend it.</p>
+ */
 @Getter
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
+
     /**
-     * Entity ID
+     * Unique identifier for the entity.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * Creation time
+     * Timestamp indicating when the entity was created.
      */
     @CreatedDate
     private LocalDateTime createdAt;
 
     /**
-     * Last updated time
+     * Timestamp indicating when the entity was last updated.
      */
     @LastModifiedDate
     private LocalDateTime updatedAt;
