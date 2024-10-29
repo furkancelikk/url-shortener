@@ -65,6 +65,6 @@ public class GlobalExceptionHandler {
     private ResponseEntity<?> handleException(Exception exception) {
         Map<String, String> errors = new HashMap<>();
         errors.put("error", "Internal error");
-        return new ResponseEntity<>(errors, HttpStatus.BAD_GATEWAY);
+        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
