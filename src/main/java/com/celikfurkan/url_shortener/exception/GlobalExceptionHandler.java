@@ -20,9 +20,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     private ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<FieldError> fieldErrors = exception.getFieldErrors();
+        Map<String, Object> errorResponse = new HashMap<>();
         Map<String, String> errors = new HashMap<>();
-        fieldErrors.forEach(fieldError -> errors.put(fieldError.getField(), fieldError.getDefaultMessage()));
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        for (FieldError fieldError : fieldErrors) {
+            errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+        }
+        errorResponse.put("error", errors);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = NotFoundException.class)
@@ -54,7 +58,7 @@ public class GlobalExceptionHandler {
             builder.append(exception.getAllErrors().get(0).getDefaultMessage());
         }
         errors.put("error", builder.toString());
-        return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = Exception.class)

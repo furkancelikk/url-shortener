@@ -34,14 +34,13 @@ public class URLService {
     }
 
     public UrlResponseDto create(RequestDto requestDto) {
-        String requestUrl = requestDto.getUrl();
+        String requestUrl = requestDto.getUrl().trim();
         String requestCode = requestDto.getCode();
         if (requestCode != null) {
             if (isExistsByCode(requestCode)) {
                 throw new AlreadyExistsException("Code already exists: " + requestCode);
             }
-        }
-        else {
+        } else {
             do {
                 requestCode = RandomCodeGenerator.generate();
             } while (isExistsByCode(requestCode));
