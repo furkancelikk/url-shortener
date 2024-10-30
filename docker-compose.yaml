@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   url-shortener:
+    image: url-shortener
     container_name: url-shortener
     build:
       context: .
