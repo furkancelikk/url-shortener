@@ -1,18 +1,18 @@
-version: "3.7"
 services:
   url-shortener:
-    image: url-shortener
-    container_name: url-shortener
+    image: ${SERVICE_IMAGE_NAME}
+    container_name: ${SERVICE_CONTAINER_NAME}
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "8080:8080"
+      - "8080:${SERVICE_PORT}"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/url_shortener
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/${SCHEMA_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      CODE_LENGTH: ${CODE_LENGTH}
     networks:
       - url-shortener-network
     depends_on:
@@ -23,10 +23,10 @@ services:
 
   mysqldb:
     image: "mysql"
-    container_name: url-shortener-mysql
+    container_name: ${DB_CONTAINER_NAME}
     restart: always
     ports:
-      - "3306:3306"
+      - "3306:${DB_PORT}"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -35,8 +35,10 @@ services:
     networks:
       - url-shortener-network
     environment:
-      MYSQL_DATABASE: url_shortener
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${SCHEMA_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
 networks:
   url-shortener-network:
     driver: bridge
