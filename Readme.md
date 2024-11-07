@@ -8,8 +8,8 @@
 * [About The Project](#about-the-project)
 * [Built With](#built-with)
 * [Installation](#installation)
-    * [Java ile ayağa kaldırma](#java-ile-ayağa-kaldırma)
-    * [Docker ile ayağa kaldırma](#docker-ile-ayağa-kaldırma)
+    * [Java ile ayağa kaldırma](#set-up-with-java)
+    * [Docker ile ayağa kaldırma](#setup-with-docker)
 </details>
 
 ---
@@ -41,15 +41,15 @@ The following technologies, tools etc. have been used in this project:
 
 ## Installation
 
-Projeyi ayağa kaldırmak için iki farklı yol var
+There are two different ways to set up the project.
 
-### Java ile ayağa kaldırma
+### Set up with Java
 
 > **Prerequisites**
 >
-> - **Java 17:** Local bilgisayarında Java 17 bulunmalıdır.
+> - **Java 17:** Java 17 must be installed on your local machine.
 >
-> - **Mysql:** Local bilgisayarınızda bir MySQL'in çalışıyor olması ve **url_shortener** isminde bir schema oluşturmanız gerekmektedir
+> - **Mysql:** You need to have a MySQL instance running on your local machine and create a schema named **url_shortener**.
 
 1. Clone the repo
 
@@ -61,25 +61,25 @@ Projeyi ayağa kaldırmak için iki farklı yol var
    ```shell
    cd url-shortener
    ```
-3. Dependency'leri çekin ve jar dosyasını oluşturun
+3. Pull the dependencies and build the JAR file.
 
    ```shell
    mvnw clean install
    ```
-4. target dizine geçin
+4. Change the directory to the **target**
 
    ```shell
    cd target
    ```
-5. Projeyi ayağa kaldırın
+5. Start the project.
 
    ```shell
    java -jar app.jar
    ```
 
-Projeye 8080 portundan erişebilirsiniz
+You can access the project at port 8080.
 
-**Note:** Projede aşağıdaki değerler environment variable olarak tanımlanmıştır. Bu alanları kendi isteğinize göre tanımlamak isterseniz projeyi ayağa kaldırırken bu parametreleri aşağıdaki şekilde verebilirsiniz
+**Note:** The following values are defined as environment variables in the project. If you want to customize these values, you can provide them as parameters when starting the project, as shown below:
 
 
 | Variable Name | Default Value | Description                |
@@ -95,11 +95,11 @@ Projeye 8080 portundan erişebilirsiniz
 java -DCODE_LENGTH=10 -jar app.jar
 ```
 
-### Docker ile ayağa kaldırma
+### Setup with Docker
 
 > **Prerequisites**
 >
-> - **Docker**: Local bilgisayarınızda Docker bulunması gerekmektedir.
+> - **Docker**: Docker must be installed on your local machine.
 
 1. Clone the repo
 
@@ -111,15 +111,15 @@ java -DCODE_LENGTH=10 -jar app.jar
    ```
    cd url-shortener
    ```
-3. Projeyi ayağa kaldırın. Bu komut gerekli dependency'leri çekecek, MySQL'i container olarak indirip projeyi çalıştıracaktır.
+3. Start the project. This command will pull the necessary dependencies, download MySQL as a container, and run the project.
 
    ```
    docker compose up -d
    ```
 
-Projeye 8080 portundan erişebilirsiniz
+You can access the project at port 8080.
 
-**Note:** Docker ile ayağa kaldırırken container isimleri
+**Note:** When starting the project with Docker, the following values are defined as environment variables. If you wish to customize these values, you can modify them in the [.env](.env) file.
 
 
 | Variable Name          | Value               | Description                |
@@ -137,6 +137,4 @@ Projeye 8080 portundan erişebilirsiniz
 
 ---
 
-### License
-
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+#### [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
