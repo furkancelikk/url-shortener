@@ -8,8 +8,8 @@
 * [About The Project](#about-the-project)
 * [Built With](#built-with)
 * [Installation](#installation)
-    * [Java ile ayağa kaldırma](#set-up-with-java)
-    * [Docker ile ayağa kaldırma](#setup-with-docker)
+    * [Set up with Java](#set-up-with-java)
+    * [Set up with Docker](#setup-with-docker)
 </details>
 
 ---
